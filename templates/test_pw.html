@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Form{% endblock %}
+{% block content %}
+
+    {% if email %}
+        <h2>email: {{ email }}</h2>
+        <h2>password: {{ password }}</h2> <br>
+        <p>Password_hash: {{ pw_hash.password_hash }}</p> <br>
+        <p>Is password same as hashed?: {{ check_pw }}</p>
+
+    {% else %}
+        <h1>What's your Email and Password?</h1>
+        <br>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }} <br>
+            {{ form.pw.label(class="form-label") }}
+            {{ form.pw(class="form-control") }} <br>
+            {{ form.submit(class="btn btn-dark") }}
+        </form>
+
+    {% endif %}
+
+{% endblock %}

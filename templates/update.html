@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Add User{% endblock %}
+{% block content %}
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+    {% if name %}
+        <h2>Update User List!</h2>
+        <br>
+        <table class="table table-hover">
+            {% for user in user_list %}
+            <tr>
+                <td>
+                    {{user.id}}. {{user.name}} - {{user.email}}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    {% else %}
+
+    {% if current_user.id == user_update.id %}
+        <h1>Update User</h1>
+        <br>
+        <form action="/update/{{user_update.id}}" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", value=user_update.name) }} <br>
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", value=user_update.email) }} <br>
+            {{ form.favorite_color.label(class="form-label") }}
+            {{ form.favorite_color(class="form-control", value=user_update.favorite_color) }} <br>
+            {{ form.about_author.label(class="form-label") }}
+            <textarea name="about_author" class="form-control">{{ user_update.about_author }}</textarea> <br>
+            {{ form.profile_pic.label(class="form-label") }}
+            {{ form.profile_pic(class="form-control", value=user_update.profile_pic) }} <br>
+            {{ form.submit(class="btn btn-dark", value="Update") }} <a class="btn btn-danger" href="{{ url_for('delete', id=user_update.id) }}">Delete</a>
+        </form>
+
+    {% else %}
+
+        <h3>Access denied!</h3>
+        <p>Sorry you cannot update this user profile</p>
+    {% endif %}
+        <br><br>
+
+        <table class="table table-hover">
+            {% for user in user_list %}
+            <tr>
+                <td>
+                    {{user.id}}. {{user.name}} - {{user.email}} - {{user.favorite_color}}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        
+    {% endif %}
+
+{% endblock %}
