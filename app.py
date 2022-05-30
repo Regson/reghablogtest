@@ -20,7 +20,7 @@ app = Flask(__name__)
 ckeditor = CKEditor(app)
 # Sqlite connector
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rmpmdruibwzfiv:425905490193cf2e078990b77d3309cc10ef309f6e2690b106601433d36081b5@ec2-52-4-104-184.compute-1.amazonaws.com:5432/d11684rj8gnc45'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://baghswmwnonpem:51070c466a2bdb5c3b6bc5ace67f4bfaf60b83ef8e56ae0b44b7d4493c9f7689@ec2-54-211-255-161.compute-1.amazonaws.com:5432/d4hfbvhf2rf4kf' 
 
 # Mysql connector
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/users'
